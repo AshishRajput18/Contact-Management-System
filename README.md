@@ -2,7 +2,7 @@
 
 ## 🚀 Description
 
-**Smart Contact Manager** is a secure and interactive web-based application developed using **Spring Boot**, **JSP**, **Hibernate (JPA)**, and **MySQL**, designed to help users **manage their personal and professional contacts online**. The application allows each registered user to store, update, search, and delete their own contact list in an intuitive dashboard interface.
+**Smart Contact Manager** is a secure and interactive web-based application developed using **Spring Boot**, **Thymleaf**, **Hibernate (JPA)**, and **MySQL**, designed to help users **manage their personal and professional contacts online**. The application allows each registered user to store, update, search, and delete their own contact list in an intuitive dashboard interface.
 
 Additionally, the app integrates with **Razorpay** for secure donation/payment functionality with **SweetAlert2** for interactive UI alerts.
 
@@ -22,7 +22,6 @@ Additionally, the app integrates with **Razorpay** for secure donation/payment f
 * 🔍 **Search & Filter Contacts**
 * 🖼️ **Image Upload (Multipart)**
 * 📊 **Dashboard with Sidebar Navigation**
-* 📆 **Role-based Access Control (User/Admin)**
 
 ### 💳 Razorpay Payment Gateway
 
@@ -38,7 +37,7 @@ Additionally, the app integrates with **Razorpay** for secure donation/payment f
 | Layer          | Technology                               |
 | -------------- | ---------------------------------------- |
 | Backend        | Java, Spring Boot, Spring MVC, Hibernate |
-| Frontend       | HTML5, CSS3, Bootstrap, JSP, jQuery      |
+| Frontend       | HTML5, CSS3, Bootstrap,Thymleaf, jQuery  |
 | Database       | MySQL                                    |
 | Authentication | Spring Security                          |
 | Payments       | Razorpay Payment Gateway                 |
