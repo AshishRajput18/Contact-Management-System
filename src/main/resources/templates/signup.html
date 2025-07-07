@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+    <title>Register - Smart Contact Manager</title>
+</head>
+
+<body>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+
+                <div class="card shadow p-4">
+                    
+                    <!-- ✅ SESSION MESSAGE -->
+                    <div th:if="${session.message}" th:classappend="'alert-' + ${session.message.type}" class="alert text-center" role="alert">
+                        <p class="text-center" th:text="${session.message.content}"></p>
+                    </div>
+
+                    <!-- 🔘 Centered image -->
+                    <div class="container text-center mb-3">
+                        <img style="width:80px;" th:src="@{/img/register.png}" alt="Register Icon"/>
+                    </div>
+
+                    <h2 class="text-center text-primary">Register Here!!</h2>
+
+                    <!-- 🔽 FORM START -->
+                    <form th:action="@{/do_register}" method="post" th:object="${user}">
+                        
+                        <!-- ✅ Name -->
+                        <div class="form-group mt-3">
+                            <label for="name_field">Your Name</label>
+                            <input type="text" th:field="*{name}" class="form-control" id="name_field" placeholder="Enter your name"/>
+                            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger small"></div>
+                        </div>
+
+                        <!-- ✅ Email -->
+                        <div class="form-group mt-3">
+                            <label for="email_field">Your Email</label>
+                            <input type="email" th:field="*{email}" class="form-control" id="email_field" placeholder="Enter your email"/>
+                            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger small"></div>
+                        </div>
+
+                        <!-- ✅ Password -->
+                        <div class="form-group mt-3">
+                            <label for="password_field">Your Password</label>
+                            <input type="password" th:field="*{password}" class="form-control" id="password_field" placeholder="Enter password"/>
+                            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger small"></div>
+                        </div>
+
+                        <!-- ✅ About -->
+                        <div class="form-group mt-3">
+                            <label for="about">About You</label>
+                            <textarea th:field="*{about}" id="about" rows="4" class="form-control" placeholder="Tell us about yourself"></textarea>
+                            <div th:if="${#fields.hasErrors('about')}" th:errors="*{about}" class="text-danger small"></div>
+                        </div>
+
+                        <!-- ✅ Agreement Checkbox -->
+                        <div class="form-group form-check mt-3">
+                            <input type="checkbox" name="agreement" class="form-check-input" id="agreement"/>
+                            <label class="form-check-label" for="agreement">I accept the terms and conditions</label>
+                        </div>
+
+                        <!-- ✅ Submit Buttons -->
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary px-4">Register</button>
+                            <button type="reset" class="btn btn-warning px-4">Reset</button>
+                        </div>
+
+                        <!-- 🔐 Login Link -->
+                        <div class="text-center mt-4">
+                            <p class="text-muted">Already have an account?
+                                <a th:href="@{/signin}" class="text-primary font-weight-bold">Login here</a>
+                            </p>
+                        </div>
+
+                    </form>
+                    <!-- 🔼 FORM END -->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

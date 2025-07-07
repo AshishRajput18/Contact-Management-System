@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Verify OTP</title>
+</head>
+<body>
+
+<!-- ✅ Include base layout properly -->
+<div th:replace="~{base::layout(~{::section})}">
+
+    <section>
+        <div id="login">
+            <div class="container">
+                <div id="login-row" class="row justify-content-center align-items-center">
+                    <div id="login-column" class="col-md-6">
+                        <div id="login-box" class="col-md-12" style="height:auto; padding: 20px;">
+
+                            <!-- ✅ Show success message only if OTP was sent -->
+                            <div class="alert alert-success mt-3" th:if="${session.otpSent}" role="alert">
+                                We have sent an OTP to your email.
+                            </div>
+
+                            <!-- ✅ Show error message only if session.message exists -->
+                            <div th:if="${session.message}" class="alert alert-danger my-2 text-center" role="alert">
+                                <span th:text="${session.message}"></span>
+                            </div>
+
+                            <!-- ✅ OTP Input Form -->
+                            <form th:action="@{/verify-otp}" method="post">
+
+                                <div class="form-group">
+                                    <label for="otp" class="text-info">Enter OTP Here:</label>
+                                    <input type="number" name="otp" id="otp" class="form-control" required />
+                                </div>
+
+                                <div class="text-center mt-3">
+                                    <button type="submit" class="btn btn-success">Verify OTP</button>
+                                </div>
+								<!-- Back to Login Link -->
+								                                <div class="text-right mt-3">
+								                                    <a href="/signin" class="text-info">Back to Login</a>
+								                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

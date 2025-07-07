@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{normal/base::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="'Details of ' + ${contact.name}">Contact Detail</title>
+</head>
+
+<body>
+<section>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <div class="container text-center">
+
+                <!-- Contact Image Centered -->
+                <img th:src="@{'/img/' + ${contacts.image}}"
+                     alt="Contact Image"
+                     class="img-thumbnail rounded-circle mb-3"
+                     style="width: 200px; height: 200px; object-fit: cover;">
+
+                <!-- Full Name Centered -->
+                <h2 th:text="${contact.name + ' ' + contact.secondName}">Full Name</h2>
+
+                <!-- Bootstrap Table for Contact Info -->
+                <div class="table-responsive mt-4">
+                    <table class="table table-bordered table-striped">
+                        <tbody>
+							<tr>
+							    <th scope="row">🆔 Contact ID</th>
+							    <td th:text="${contact.cId}">1</td>
+							</tr>
+
+                            <tr>
+                                <th scope="row">📧 Email</th>
+                                <td th:text="${contact.email}">john@example.com</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">📞 Phone</th>
+                                <td th:text="${contact.phone}">1234567890</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">💼 Work</th>
+                                <td th:text="${contact.work}">Developer</td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
+					<!-- ✅ Description Section in separate div -->
+					<div class="mt-4" id="description">
+					    <h5>📝 Description</h5>
+					    <th:block th:utext="${contact.description}">Some description here...</th:block>
+					</div>
+					
+					<div class="container mt-3">
+						<td>
+												    <!-- Update Button -->
+												    <a href="#" class="btn btn-sm btn-primary"
+												       th:onclick="'confirmUpdate(' + ${contact.cId} + ')'">Update</a>
+
+												    <form th:id="'updateForm-' + ${contact.cId}"
+												          th:action="@{'/user/update-contact/' + ${contact.cId}}"
+												          method="post"
+												          style="display: none;">
+												    </form>
+
+												    <!-- Delete Button -->
+												    <a href="#" class="btn btn-sm btn-danger"
+												       th:onclick="'confirmDelete(' + ${contact.cId} + ')'">Delete</a>
+												</td>
+
+					</div>
+                </div>
+
+            </div>
+        </div>
+		
+    </div>
+
+</section>
+</body>
+</html>

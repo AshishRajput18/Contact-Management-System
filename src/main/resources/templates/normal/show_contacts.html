@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{normal/base::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Your Contacts</title>
+</head>
+
+<body>
+
+<section>
+    <div class="card mr-3 ml-3">
+        <div class="card-body">
+            <h1 class="text-center">Your Contacts</h1>
+			
+			<!-- Search Box -->
+			<div class="search-container my-3">
+			    <input id="search-input" type="text" class="form-control" placeholder="Search your contacts" />
+			    
+			    <!-- Results will appear here -->
+			    <div class="search-result mt-2" style="display: none;"></div>
+			</div>
+
+
+
+            <!-- ✅ Contact Table -->
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#Id</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Work</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="contact, iter : ${contacts}">
+                            <td th:text="${contact.cId}">1</td>
+							
+							<td>
+							  <img th:src="@{'/img/' + ${contact.image}}" alt="profile" class="my_profile_picture" />
+							  <span th:text="${contact.name + ' ' + contact.secondName}">John Doe</span>
+							</td>
+							
+				
+
+							<td>
+							    <a th:href="@{'/user/contact/' + ${contact.cId}}" th:text="${contact.email}"></a>
+							</td>
+
+                            <td th:text="${contact.phone}">1234567890</td>
+                            <td th:text="${contact.work}">Engineer</td>
+							<td>
+							    <!-- Update Button -->
+							    <a href="#" class="btn btn-sm btn-primary"
+							       th:onclick="'confirmUpdate(' + ${contact.cId} + ')'">Update</a>
+
+							    <form th:id="'updateForm-' + ${contact.cId}"
+							          th:action="@{'/user/update-contact/' + ${contact.cId}}"
+							          method="post"
+							          style="display: none;">
+							    </form>
+
+							    <!-- Delete Button -->
+							    <a href="#" class="btn btn-sm btn-danger"
+							       th:onclick="'confirmDelete(' + ${contact.cId} + ')'">Delete</a>
+							</td>
+
+                        </tr>
+						<tr>
+						<th:block th:if="${contacts.empty}">
+						   <h3 class="text-center">You have no contacts!</h3>
+						</th:block>
+						</tr>
+                    </tbody>
+                </table>
+				<!-- Pagination -->
+				<nav aria-label="Page navigation example" th:if="${totalPages > 1}">
+				  <ul class="pagination justify-content-center">
+
+				    <!-- Previous -->
+				    <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+				      <a class="page-link" th:href="@{'/user/show-contacts/' + ${currentPage - 1}}">Previous</a>
+				    </li>
+
+				    <!-- Page Numbers -->
+				    <li class="page-item"
+				        th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+				        th:classappend="${i == currentPage} ? 'active'">
+				      <a class="page-link" th:href="@{'/user/show-contacts/' + ${i}}" th:text="${i + 1}">1</a>
+				    </li>
+
+				    <!-- Next -->
+				    <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+				      <a class="page-link" th:href="@{'/user/show-contacts/' + ${currentPage + 1}}">Next</a>
+				    </li>
+
+				  </ul>
+				</nav>
+
+
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>

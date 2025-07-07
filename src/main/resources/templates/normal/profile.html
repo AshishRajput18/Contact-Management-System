@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+<section>
+    <div class="container mt-5">
+        <div class="card shadow rounded">
+            <div class="card-body text-center">
+
+                <!-- 👤 Profile Picture -->
+                <div class="mb-4">
+                    <img th:src="@{'/img/' + ${user.imageUrl}}"
+                         class="rounded-circle"
+                         style="width: 200px; height: 200px; object-fit: cover; border: 2px solid #ccc;"
+                         alt="Profile Image" />
+                </div>
+
+                <!-- 🧾 User Name -->
+                <h2 class="font-weight-bold mb-4" th:text="${user.name}">User Name</h2>
+
+                <!-- 📋 User Details Table -->
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped w-75 mx-auto">
+                        <tbody>
+                            <tr>
+                                <th scope="row">🆔 User ID</th>
+                                <td th:text="${user.id}">1</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">📧 Email</th>
+                                <td th:text="${user.email}">ashish@example.com</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">🔑 Password</th>
+                                <td th:text="${user.password}">******</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">👥 Role</th>
+                                <td th:text="${user.role}">ROLE_USER</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">✅ Account Active</th>
+                                <td th:text="${user.enabled} ? 'Yes' : 'No'">true</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">📝 About</th>
+                                <td th:text="${user.about}">Some info about the user</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ✏️ Update Button -->
+                <a th:href="@{/user/update-profile}" 
+                   class="btn btn-outline-primary mt-4 px-4 py-2 text-uppercase font-weight-bold">
+                   ✏️ Update Profile
+                </a>
+
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

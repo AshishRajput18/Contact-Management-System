@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us</title>
+</head>
+<body>
+<section>
+    <div class="container mt-5">
+        <div class="card shadow-lg">
+            <div class="card-body">
+				<h2 class="text-center mb-4">
+				  <a th:href="@{/user/signup}" class="text-primary text-decoration-none">
+				    About Our Contact Book 📖
+				  </a>
+				</h2>
+                <p class="lead text-justify">
+                    This project is designed to help users securely manage and organize their personal or professional contacts in the cloud ☁️.
+                </p>
+                <p>
+                    With features like adding, updating, deleting, and searching contacts, it provides an efficient user experience with a beautiful dashboard UI.
+                </p>
+                <ul>
+                    <li>🔒 Secure Login System</li>
+                    <li>➕ Add / ✏️ Update / 🗑️ Delete Contacts</li>
+                    <li>📤 Upload Profile Pictures</li>
+                    <li>🔍 Live Search & Pagination</li>
+                    <li>📧 JavaMail Notifications (Optional)</li>
+                </ul>
+                <p class="text-muted mt-3">Made with ❤️ using Spring Boot, Thymeleaf, MySQL & Bootstrap</p>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+    <title>Login - Smart Contact Manager</title>
+</head>
+
+<body>
+<section>
+    <div class="container">
+        <div class="row justify-content-center align-items-center mt-5">
+            <div class="col-md-6">
+                <div class="card shadow p-4">
+                    
+                    <!-- 🔐 Form -->
+                    <form id="login-form" class="form" th:action="@{/dologin}" method="post">
+                        <h3 class="text-center text-primary mb-4">Login</h3>
+
+                        <!-- ✅ Error message -->
+                        <div th:if="${param.error}" class="alert alert-danger text-center">
+                            Invalid username or password
+                        </div>
+
+                        <!-- ✅ Logout message -->
+                        <div th:if="${param.logout}" class="alert alert-success text-center">
+                            You have been logged out successfully
+                        </div>
+
+                        <!-- ✅ Registration success message -->
+                        <div th:if="${param.change}" class="alert alert-success text-center">
+                            <p th:text="${param.change}"></p>
+                        </div>
+
+                        <!-- ✅ Username -->
+                        <div class="form-group">
+                            <label for="username" class="form-label">Username (Email)</label>
+                            <input type="text" name="username" id="username" class="form-control" placeholder="Enter your email" required>
+                        </div>
+
+                        <!-- ✅ Password -->
+                        <div class="form-group mt-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
+                        </div>
+
+                        <!-- ✅ Remember me -->
+                        <div class="form-check mt-3">
+                            <input type="checkbox" class="form-check-input" id="remember-me" name="remember-me">
+                            <label class="form-check-label" for="remember-me">Remember me</label>
+                        </div>
+
+                        <!-- ✅ Submit button -->
+                        <div class="text-center mt-4">
+                            <input type="submit" class="btn btn-primary w-100" value="Login">
+                        </div>
+
+                        <!-- ✅ Links -->
+                        <div class="text-center mt-3">
+                            <a th:href="@{/signup}" class="text-decoration-none">Don't have an account? <strong>Register here</strong></a><br>
+                            <a th:href="@{/forgot}" class="text-decoration-none">Forgot Password?</a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
